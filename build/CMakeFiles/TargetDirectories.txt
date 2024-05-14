@@ -1,0 +1,9 @@
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/rebuild_cache.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/edit_cache.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_c.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_s.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/sync_s.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_cnlogin.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/sync_c.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_sn.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/hw_grpc_proto.dir

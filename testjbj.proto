@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package T.jbj;
+
+service session {
+    rpc Regist(jbjRegist_req) returns (jbjReply_res){}
+    rpc Login(jbjLogin_req) returns (jbjLogin_res){}
+}
+
+message jbjLogin_req{
+    string user_name = 1;
+    string password = 2 ;
+}
+message jbjLogin_res{
+    uint32 user_id = 1; 
+    uint32 result_code = 2; // 返回0的时候注册注册
+}
+
+message jbjRegist_req{
+    string user_name = 1; // 用户名
+    string password = 2; // 密码
+}
+message jbjReply_res{
+    string user_name = 1; // 用户名
+    string password = 2; // 密码
+    uint32 result_code =3;  // 返回0的时候注册注册
+}
