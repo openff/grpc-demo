@@ -99,6 +99,17 @@ add_custom_command(
         --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
         "${hw_proto}"
       DEPENDS "${hw_proto}")
+
+# C++11 标准进行编译
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cmake_policy(SET CMP0077 NEW)
+# 设置 Debug 编译模式
+set(CMAKE_BUILD_TYPE Debug)
+#SET(CMAKE_BUILD_TYPE "Release")
+# 设置静态库的路径
+set(THREADPOOL_LIB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/libthreadpool_lib.a)
+
 # 将生成文件所在的目录添加到头文件搜索路径      
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 #创建一个名为 "hw_grpc_proto" 的库，包含生成的 protobuf 和 gRPC 源文件
@@ -108,17 +119,18 @@ add_library(hw_grpc_proto
   ${hw_proto_srcs}
   ${hw_proto_hdrs})
 # 为 "hw_grpc_proto" 库链接所需的依赖项，包括 protobuf 和 gRPC 库
+
 target_link_libraries(hw_grpc_proto
 ${_REFLECTION}
 ${_GRPC_GRPCPP}
 ${_PROTOBUF_LIBPROTOBUF})
 
 
-
 foreach(_target
     sync_c  sync_s
     async_s async_c
     async_sn async_cnlogin
+    async_s_tp async_c_tp
 )
     # 遍历一系列示例目标
     add_executable(${_target} "${_target}.cc")
@@ -127,6 +139,8 @@ foreach(_target
     hw_grpc_proto
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
-    ${_PROTOBUF_LIBPROTOBUF})
+    ${_PROTOBUF_LIBPROTOBUF}
+    ${THREADPOOL_LIB_PATH} pthread
+    )
     # 为每个目标链接 "hw_grpc_proto" 库以及 protobuf 和 gRPC 库
 endforeach()

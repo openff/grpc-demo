@@ -83,6 +83,7 @@ async_s: libhw_grpc_proto.a
 async_s: /usr/local/lib/libgrpc++_reflection.a
 async_s: /usr/local/lib/libgrpc++.a
 async_s: /usr/local/lib/libprotobuf.a
+async_s: ../libthreadpool_lib.a
 async_s: /usr/local/lib/libgrpc.a
 async_s: /usr/local/lib/libz.a
 async_s: /usr/local/lib/libcares.a

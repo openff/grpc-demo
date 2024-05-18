@@ -83,6 +83,7 @@ async_cnlogin: libhw_grpc_proto.a
 async_cnlogin: /usr/local/lib/libgrpc++_reflection.a
 async_cnlogin: /usr/local/lib/libgrpc++.a
 async_cnlogin: /usr/local/lib/libprotobuf.a
+async_cnlogin: ../libthreadpool_lib.a
 async_cnlogin: /usr/local/lib/libgrpc.a
 async_cnlogin: /usr/local/lib/libz.a
 async_cnlogin: /usr/local/lib/libcares.a

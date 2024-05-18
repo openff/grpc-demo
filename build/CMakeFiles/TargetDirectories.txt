@@ -1,5 +1,7 @@
 /home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/rebuild_cache.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_c_tp.dir
 /home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/edit_cache.dir
+/home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_s_tp.dir
 /home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_c.dir
 /home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/async_s.dir
 /home/jbj/Desktop/myjbj/proj/connect-pool/grpc-demo/demo/build/CMakeFiles/sync_s.dir

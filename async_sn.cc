@@ -1,5 +1,21 @@
 #define ADDR "0.0.0.0:50051"
-
+/*
+after cq_->Next 
+before static_cast
+this: 0x55add9f23390 RegistCallData Proceed(), status: 1
+this: 0x55add9f23390 RegistCallData Proceed(), status: PROCESS
+CallData constructing, this: 0x55add9f22b80
+this: 0x55add9f22b80 RegistCallData Proceed(), status: 0
+this: 0x55add9f22b80 RegistCallData Proceed(), status: CREATE
+after static_cast
+before cq_->Next 
+after cq_->Next 
+before static_cast
+this: 0x55add9f23390 RegistCallData Proceed(), status: 2
+this: 0x55add9f23390 RegistCallData Proceed(), status: FINISH
+after static_cast
+before cq_->Next 
+*/
 #include<grpcpp/grpcpp.h>
 #include<grpc/support/log.h>
 
@@ -65,8 +81,7 @@ public:
         CallData(session::AsyncService * service,ServerCompletionQueue* cq)
         :service_(service), cq_(cq), status_(CREATE)
         {
-             std::cout << "CallData constructing, this: " << this
-                    << std::endl; 
+             //std::cout << "CallData constructing, this: " << this<< std::endl; 
         }
         virtual ~CallData(){}
         virtual void Proceed() = 0;
@@ -85,12 +100,10 @@ public:
         }
 
         void Proceed()override {
-            std::cout << "this: " << this
-                    << " RegistCallData Proceed(), status: " << status_
-                    << std::endl;
+            //std::cout << "this: " << this<< " RegistCallData Proceed(), status: " << status_<< std::endl;
             if (status_ == CREATE)
             {
-                std::cout << "this: " << this << " RegistCallData Proceed(), status: " << "CREATE" << std::endl;
+                //std::cout << "this: " << this << " RegistCallData Proceed(), status: " << "CREATE" << std::endl;
                 status_ = PROCESS;
 
                 /*
@@ -105,14 +118,12 @@ public:
 
             }else if (status_ == FINISH)
             {
-                std::cout << "this: " << this << " RegistCallData Proceed(), status: "
-                            << "FINISH" << std::endl;
+                //std::cout << "this: " << this << " RegistCallData Proceed(), status: "<< "FINISH" << std::endl;
                 GPR_ASSERT(status_ == FINISH);
                 delete this;
             } else if (status_ == PROCESS)
             {
-                std::cout << "this: " << this << " RegistCallData Proceed(), status: "
-                            << "PROCESS" << std::endl;
+                //std::cout << "this: " << this << " RegistCallData Proceed(), status: " << "PROCESS" << std::endl;
                 //新创一个 为了能够同时处理多个客户端的注册请求。
                 new RegistCallData(service_,cq_);
 
@@ -145,23 +156,18 @@ public:
         }
 
         void Proceed() override{
-             std::cout << "this: " << this
-                    << " LoginCallData Proceed(), status: " << status_
-                    << std::endl;   // darren 增加
+             //std::cout << "this: " << this<< " LoginCallData Proceed(), status: " << status_ << std::endl;   // darren 增加
             if(status_ == CREATE){
-                  std::cout << "this: " << this << " LoginCallData Proceed(), status: "
-                            << "CREATE" << std::endl;
+                  //std::cout << "this: " << this << " LoginCallData Proceed(), status: "<< "CREATE" << std::endl;
                 status_= PROCESS;
 
                  service_->RequestLogin(&ctx_, &request_, &responder_, cq_, cq_, this);
             }else if(status_ == FINISH){
-                std::cout << "this: " << this << " LoginCallData Proceed(), status: "
-                            << "FINISH" << std::endl;
+                //std::cout << "this: " << this << " LoginCallData Proceed(), status: "<< "FINISH" << std::endl;
                 GPR_ASSERT(status_ == FINISH);
                 delete this;
             }else if(status_ == PROCESS){
-                std::cout << "this: " << this << " LoginCallData Proceed(), status: "
-                            << "PROCESS" << std::endl;
+                //std::cout << "this: " << this << " LoginCallData Proceed(), status: "<< "PROCESS" << std::endl;
                 new LoginCalldata(service_,cq_);
                 reply_.set_user_id(10);
                 reply_.set_result_code(0);
@@ -183,14 +189,14 @@ public:
         bool ok;
         while (1)   //不断地从完成队列 cq_ 中读取事件并处理。
         {
-            std::cout << "before cq_->Next " << std::endl;
+            //std::cout << "before cq_->Next " << std::endl;
             GPR_ASSERT(cq_->Next(&tag,&ok));
-            std::cout << "after cq_->Next " << std::endl;  // darren 增加
+            //std::cout << "after cq_->Next " << std::endl;  // darren 增加
             GPR_ASSERT(ok);
-            std::cout << "before static_cast" << std::endl;  // darren 增加
+            //std::cout << "before static_cast" << std::endl;  // darren 增加
             //从完成队列读取到的事件对应的 CallData 实例的 Proceed() 方法。
             static_cast<CallData*>(tag)->Proceed();
-            std::cout << "after static_cast" << std::endl;  // darren 增加
+            //std::cout << "after static_cast" << std::endl;  // darren 增加
      
         }
         
