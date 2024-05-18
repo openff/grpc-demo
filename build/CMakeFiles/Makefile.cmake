@@ -67,6 +67,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/async_c_tp.dir/DependInfo.cmake"
+  "CMakeFiles/async_s_tp.dir/DependInfo.cmake"
   "CMakeFiles/async_c.dir/DependInfo.cmake"
   "CMakeFiles/async_s.dir/DependInfo.cmake"
   "CMakeFiles/sync_s.dir/DependInfo.cmake"

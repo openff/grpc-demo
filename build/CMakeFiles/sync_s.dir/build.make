@@ -83,6 +83,7 @@ sync_s: libhw_grpc_proto.a
 sync_s: /usr/local/lib/libgrpc++_reflection.a
 sync_s: /usr/local/lib/libgrpc++.a
 sync_s: /usr/local/lib/libprotobuf.a
+sync_s: ../libthreadpool_lib.a
 sync_s: /usr/local/lib/libgrpc.a
 sync_s: /usr/local/lib/libz.a
 sync_s: /usr/local/lib/libcares.a
